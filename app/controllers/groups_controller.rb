@@ -46,6 +46,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    if @group.users == current_user
     respond_to do |format|
       if @group.update(group_params)
         format.html {redirect_to @group, notice: 'Group was successfully updated.'}
@@ -55,17 +56,17 @@ class GroupsController < ApplicationController
         format.json {render json: @group.errors, status: :unprocessable_entity}
       end
     end
+    end
   end
+
 
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    if @group.users == current_user
     @group.destroy
     respond_to do |format|
       format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
       format.json {head :no_content}
-    end
     end
   end
 
@@ -80,6 +81,7 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
   end
+end
+
 
   # Need to add users to group
-end

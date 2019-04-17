@@ -17,7 +17,7 @@ class ObjectivesController < ApplicationController
 
   # GET /objectives/new
   def new
-    @objective = current_user.objectives.build
+    @objective = Objective.new
     @groups = Group.where('id = ?', current_user.group_id)
   end
 
@@ -32,12 +32,11 @@ class ObjectivesController < ApplicationController
 
   def create
     #binding.pry
-    # group does not exist
-    if @objective.users == current_user
+    # group does not exist -> I don't know how to assign the required group
       @objective = current_user.objectives.build(objective_params)
       respond_to do |format|
         if @objective.save
-          redirect_to objective_path(@objective)
+          #redirect_to objective_path(@objective)
           format.html {redirect_to @objective, notice: 'Objective was successfully created.'}
           format.json {render :show, status: :created, location: @objective}
         else
@@ -45,7 +44,6 @@ class ObjectivesController < ApplicationController
           format.json {render json: @objective.errors, status: :unprocessable_entity}
         end
       end
-    end
   end
 
 
@@ -68,7 +66,7 @@ class ObjectivesController < ApplicationController
   # DELETE /objectives/1.json
   def destroy
 
-    if @objective.users == current_user
+    if @objective.user == current_user
       @objective.destroy
       respond_to do |format|
         format.html {redirect_to objectives_url, notice: 'Objective was successfully destroyed.'}
@@ -91,5 +89,6 @@ class ObjectivesController < ApplicationController
     params.require(:objective).permit(:name, :description, :group_id)
   end
 end
+
 
 
