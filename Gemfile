@@ -20,6 +20,8 @@ gem 'pry'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+# User Image Icon
+gem 'gravatar_image_tag'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

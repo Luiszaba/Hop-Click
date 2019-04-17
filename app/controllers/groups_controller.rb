@@ -1,13 +1,13 @@
 class GroupsController < ApplicationController
 
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.all.order("created_at ASC")
   end
 
   # GET /groups/1
@@ -17,12 +17,13 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = current_user.groups.build
+    @group = Group.new
     @user = current_user
   end
 
   # GET /groups/1/edit
   def edit
+
   end
 
   # POST /groups
@@ -59,16 +60,14 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    if @group.users == current_user
     @group.destroy
     respond_to do |format|
       format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
       format.json {head :no_content}
     end
+    end
   end
-
-
-
-
 
   private
 
@@ -81,5 +80,6 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
   end
-  end
 
+  # Need to add users to group
+end

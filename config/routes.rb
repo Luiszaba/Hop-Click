@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :objectives
-  root "application#welcome"
 
+  root "home#index"
+
+# Devise routes
   devise_for :users, :controllers => {registrations: "registrations",
                                       omniauth_callbacks: "users/omniauth_callbacks",
                                       confirmations: "confirmations"}

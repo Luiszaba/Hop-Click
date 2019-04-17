@@ -2,6 +2,7 @@
 
   <% if group.errors.any? %>
     <div id="error_explanation">
+      <% @group ||= Group.new %>
       <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
       <ul>
