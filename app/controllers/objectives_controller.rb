@@ -1,5 +1,7 @@
 class ObjectivesController < ApplicationController
   before_action :set_objective, only: [:show, :edit, :update, :destroy]
+  # before_action only; [:edit, :update, :destroy] => permits visitor to view show page
+  before_action :authenticate_user!, only: [:destroy, :update, :edit]
 
   # GET /objectives
   # GET /objectives.json
@@ -14,11 +16,15 @@ class ObjectivesController < ApplicationController
 
   # GET /objectives/new
   def new
-    @objective = Objective.new
+    if current_user
+    @objective = Objective.project.build
+    @group = Group.where('id = ?', current_user.team_id)
   end
 
   # GET /objectives/1/edit
   def edit
+    @groups = current_user.groups
+  end
   end
 
   # POST /objectives
@@ -69,6 +75,6 @@ class ObjectivesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def objective_params
-      params.require(:objective).permit(:name, :description, :completed)
+      params.require(:objective).permit(:name, :description, :group_id, :completed)
     end
 end

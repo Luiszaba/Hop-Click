@@ -1,5 +1,8 @@
 class GroupsController < ApplicationController
+
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  # before_action only; [:edit, :update, :destroy] => permits visitor to view show page
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /groups
   # GET /groups.json
@@ -14,7 +17,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Group.new
+    @user = current_user
+    @group = current_user.groups.build
   end
 
   # GET /groups/1/edit
@@ -25,6 +29,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
+    @group.users << current_user
 
     respond_to do |format|
       if @group.save
@@ -69,6 +74,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
     end
 end
