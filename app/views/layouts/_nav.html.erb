@@ -1,13 +1,13 @@
 <nav>
   <ul>
-      <% if current_user %>
-    <li><%= link_to "Home", root_path %></li>
-    <li>Create Memory</li>
-    <li><%= link_to "Manage Account", edit_user_registration_path %></li>
-    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-      <% else %>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-    <li><%= link_to "Create Account", new_user_registration_path %></li>
-      <% end %>
+    <% if current_user %>
+      <li><%= link_to "Home", root_path %></li>
+      <li>Holder for action</li>
+      <li><%= link_to "Manage Account", edit_user_registration_path %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign in", new_user_session_path %></li>
+      <li><%= link_to "Create Account", new_user_registration_path %></li>
+    <% end %>
   </ul>
 </nav>
