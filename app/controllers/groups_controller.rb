@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all.order("created_at ASC")
+    @groups = Group.all.order('created_at ASC')
   end
 
   # GET /groups/1
@@ -17,20 +17,20 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Group.new
     @user = current_user
+    @group = current_user.groups.build
+
   end
 
   # GET /groups/1/edit
   def edit
-
   end
 
   # POST /groups
   # POST /groups.json
   def create
+    #binding.pry
     @group = current_user.groups.build(group_params)
-    @group.users << current_user
 
     respond_to do |format|
       if @group.save
@@ -73,14 +73,17 @@ class GroupsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+
+  def group_params
+    params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
+  end
+
   def set_group
     @group = Group.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def group_params
-    params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
-  end
+
 end
 
 
