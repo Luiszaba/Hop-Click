@@ -1,12 +1,13 @@
 <%= form_with(model: objective, local: true) do |form| %>
+
   <% if objective.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(objective.errors.count, "error") %> prohibited this objective from being saved:</h2>
 
       <ul>
-      <% objective.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% objective.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>

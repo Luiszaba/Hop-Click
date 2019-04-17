@@ -17,7 +17,7 @@ class ObjectivesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create objective" do
     assert_difference('Objective.count') do
-      post objectives_url, params: { objective: { completed: @objective.completed, description: @objective.description, name: @objective.name } }
+      post objectives_url, params: {objective: {completed: @objective.completed, description: @objective.description, name: @objective.name}}
     end
 
     assert_redirected_to objective_url(Objective.last)
@@ -34,7 +34,7 @@ class ObjectivesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update objective" do
-    patch objective_url(@objective), params: { objective: { completed: @objective.completed, description: @objective.description, name: @objective.name } }
+    patch objective_url(@objective), params: {objective: {completed: @objective.completed, description: @objective.description, name: @objective.name}}
     assert_redirected_to objective_url(@objective)
   end
 

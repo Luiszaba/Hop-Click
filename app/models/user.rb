@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, and
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :omniauthable, :omniauth_providers => [:github]
+         :validatable, :omniauthable, omniauth_providers: [:github]
 
   has_many :objectives
-  has_many :teams, through: :objectives
+  has_many :groups
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
