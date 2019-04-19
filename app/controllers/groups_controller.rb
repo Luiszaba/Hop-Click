@@ -49,11 +49,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def completed
-  @group.update(completed: true)
-  redirect_to groups_path
-  end
-
 # DELETE /groups/1
 # DELETE /groups/1.json
   def destroy

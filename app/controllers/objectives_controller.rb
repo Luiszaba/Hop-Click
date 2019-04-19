@@ -40,6 +40,12 @@ class ObjectivesController < ApplicationController
     end
   end
 
+  def completed
+    @objective.update(completed: true)
+    destroy
+    redirect_to objectives_path
+  end
+
   def destroy
     @objective.destroy
     respond_to do |format|
