@@ -15,9 +15,7 @@ class ObjectivesController < ApplicationController
   end
 
 
-  def edit
-  @groups = current_user.groups
-  end
+  def edit; end
 
   def create
       @objective = current_user.objectives.build(objective_params)

@@ -1,8 +1,7 @@
 class GroupsController < ApplicationController
 
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :completed]
   before_action :authenticate_user!
-
 
   # GET /groups
   # GET /groups.json
@@ -12,26 +11,19 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.json
-  def show
-  end
+  # GET /groups/1/edit
+  def show; end
+  def edit; end
 
   # GET /groups/new
   def new
-    @user = current_user
-    @group = current_user.groups.build
-
-  end
-
-  # GET /groups/1/edit
-  def edit
+    @group = Group.new
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    #binding.pry
-    @group = current_user.groups.build(group_params)
-
+    @group = Group.new(group_params)
     respond_to do |format|
       if @group.save
         format.html {redirect_to @group, notice: 'Group was successfully created.'}
@@ -46,7 +38,6 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
-    if @group.users == current_user
     respond_to do |format|
       if @group.update(group_params)
         format.html {redirect_to @group, notice: 'Group was successfully updated.'}
@@ -56,35 +47,30 @@ class GroupsController < ApplicationController
         format.json {render json: @group.errors, status: :unprocessable_entity}
       end
     end
-    end
   end
 
+  def completed
+  @group.update(completed: true)
+  redirect_to groups_path
+  end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
+# DELETE /groups/1
+# DELETE /groups/1.json
   def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
-      format.json {head :no_content}
-    end
+  @group.destroy
+  respond_to do |format|
+    format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
+    format.json {head :no_content}
   end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-
-  def group_params
-    params.require(:group).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
   end
-
-  def set_group
-    @group = Group.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-
 end
 
+private
 
-  # Need to add users to group
+def group_params
+  params.require('group').permit(:name)
+end
+
+def set_group
+  @group = Group.find(params[:id])
+end
