@@ -19,6 +19,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :user %>
+    <%= form.collection_select :user_id, User.all, :id, :email %>
+  </div>
+
+  <div class="field">
     <%= form.label :objective_id, "Assign Objective" %>
     <%= form.collection_select :objective_id, Objective.all, :id, :name %>
   </div>

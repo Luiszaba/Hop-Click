@@ -5,5 +5,10 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
       <auth-required>false</auth-required>
     </data-source>
+    <data-source name="postgres@localhost" uuid="fdb85548-2097-47b1-87ae-cc4f0e472e5c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>luiszaba</user-name>
+    </data-source>
   </component>
 </project>

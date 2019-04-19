@@ -28,8 +28,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id, "Add Objective Member(s)" %>
-    <%= form.collection_select :user_id, User.all, :id, :email %>
+    <%= form.label :user_id, "Assign task to a user" %>
+    <%= form.collection_select :user_id, User.all, :id, :name %>
   </div>
 
   <div class="field">

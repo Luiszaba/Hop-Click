@@ -4,11 +4,14 @@ class GroupsController < ApplicationController
 
 
   def index
-    @groups = Group.all.order('created_at ASC')
+    @groups = Group.all
   end
 
-  def show; end
-  def edit; end
+  def show;
+  end
+
+  def edit;
+  end
 
   def new
     @group = Group.new
@@ -40,11 +43,11 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-  @group.destroy
-  respond_to do |format|
-    format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
-    format.json {head :no_content}
-  end
+    @group.destroy
+    respond_to do |format|
+      format.html {redirect_to groups_url, notice: 'Group was successfully destroyed.'}
+      format.json {head :no_content}
+    end
   end
 end
 

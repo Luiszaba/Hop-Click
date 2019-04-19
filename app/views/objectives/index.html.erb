@@ -22,9 +22,9 @@
       <td><%= objective.completed %></td>
       <td><%= link_to 'Show', objective %></td>
       <% if current_user %>
-      <td><%= link_to 'Edit', edit_objective_path(objective) %></td>
-      <td><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        <% end %>
+        <td><%= link_to 'Edit', edit_objective_path(objective) %></td>
+        <td><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
