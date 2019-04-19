@@ -32,6 +32,8 @@ gem 'omniauth-oauth2'
 
 # User Image Icon
 gem 'gravatar_image_tag'
+# Bootstrap
+gem 'bootstrap-sass'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

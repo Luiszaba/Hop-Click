@@ -13,6 +13,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :group %>
+    <%= form.collection_select :group_id, Group.all, :id, :name %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -20,6 +25,16 @@
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id, "Add Objective Member(s)" %>
+    <%= form.collection_select :user_id, User.all, :id, :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date %>
   </div>
 
   <div class="field">

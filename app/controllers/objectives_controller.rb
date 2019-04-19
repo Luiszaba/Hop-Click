@@ -1,14 +1,14 @@
 class ObjectivesController < ApplicationController
+
   before_action :set_objective, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
 
   def index
-    @objectives = Objective.all
+    @objectives = Objective.all.order('created_at ASC')
   end
 
   def show; end
-
   def edit; end
 
   def new
@@ -42,7 +42,6 @@ class ObjectivesController < ApplicationController
 
   def completed
     @objective.update(completed: true)
-    destroy
     redirect_to objectives_path
   end
 
@@ -62,6 +61,6 @@ def set_objective
 end
 
 def objective_params
-  params.require(:objective).permit(:name, :description, :group_id,
+  params.require(:objective).permit(:name, :description, :group_id, :completed,
                                     :due_date, :user_id)
 end

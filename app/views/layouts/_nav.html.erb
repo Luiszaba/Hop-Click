@@ -5,14 +5,10 @@
       <li><%= link_to "Create Account", new_user_registration_path %></li>
     <% else %>
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "New Objective", new_objective_path %></li>
-      <li><%= link_to "New Group", new_group_path %> </li>
-      <li><%= link_to "Current Groups", groups_path %></li>
-      <li><%= link_to "Current Objectives", objectives_path %></li>
-      <li><%= link_to "Manage Account", edit_user_registration_path %>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <li><%= link_to "Groups", groups_path %></li>
+      <li><%= link_to "Objectives", objectives_path %></li>
+      <li><%= link_to "Manage Account", edit_user_registration_path %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% end %>
   </ul>
 </nav>
-</li>
-</li>

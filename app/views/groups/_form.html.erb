@@ -18,6 +18,10 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :objective_id, "Assign Objective" %>
+    <%= form.collection_select :objective_id, Objective.all, :id, :name %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
