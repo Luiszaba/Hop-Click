@@ -25,10 +25,7 @@ gem 'pry'
 
 # Authentication
 gem 'devise'
-gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-github'
-gem 'omniauth-oauth2'
 
 # User Image Icon
 gem 'gravatar_image_tag'

@@ -1,3 +1,6 @@
+require 'pry'
+
+# controller for Objectives
 class ObjectivesController < ApplicationController
   before_action :set_objective, only: [:show, :edit, :update, :destroy]
 
@@ -5,11 +8,9 @@ class ObjectivesController < ApplicationController
     @objectives = Objective.all.order('created_at DESC')
   end
 
-  def show;
-  end
+  def show; end
 
-  def edit;
-  end
+  def edit; end
 
   def new
     @objective = Objective.new
@@ -32,7 +33,6 @@ class ObjectivesController < ApplicationController
     end
   end
 
-
   def update
     respond_to do |format|
       if @objective.update(objective_params)
@@ -44,22 +44,19 @@ class ObjectivesController < ApplicationController
       end
     end
   end
-end
 
-
-def completed
-  @objective.update(completed: true)
-  redirect_to objectives_path
-end
-
-def destroy
-  @objective.destroy
-  respond_to do |format|
-    format.html {redirect_to objectives_url, notice: 'Objective was successfully destroyed.'}
-    format.json {head :no_content}
+  def completed
+    @objective.update(completed: true)
+    redirect_to objectives_path
   end
-end
 
+  def destroy
+    @objective.destroy
+      respond_to do |format|
+      format.html {redirect_to objectives_url, notice: 'Objective was successfully destroyed.'}
+      format.json {head :no_content}
+    end
+  end
 
 private
 
@@ -70,6 +67,7 @@ end
 def objective_params
   params.require(:objective).permit(:name, :description, :group_id, :completed,
                                     :due_date, :user_id)
+end
 end
 
 

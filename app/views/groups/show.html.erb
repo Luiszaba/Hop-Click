@@ -3,6 +3,10 @@
 <p>
   <strong>New Group Name: </strong>
   <%= @group.name %><br/>
+  <% @group.users.each do |user| %>
+  <%= user.name %>
+  <% end %>
+
 </p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
