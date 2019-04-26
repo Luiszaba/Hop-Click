@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pry'
 
 # controller for Objectives
@@ -52,22 +54,22 @@ class ObjectivesController < ApplicationController
 
   def destroy
     @objective.destroy
-      respond_to do |format|
+    respond_to do |format|
       format.html {redirect_to objectives_url, notice: 'Objective was successfully destroyed.'}
       format.json {head :no_content}
     end
   end
 
-private
+  private
 
-def set_objective
-  @objective = Objective.find(params[:id])
-end
+  def set_objective
+    @objective = Objective.find(params[:id])
+  end
 
-def objective_params
-  params.require(:objective).permit(:name, :description, :group_id, :completed,
-                                    :due_date, :user_id)
-end
+  def objective_params
+    params.require(:objective).permit(:name, :description, :group_id, :completed,
+                                      :due_date, :user_id)
+  end
 end
 
 

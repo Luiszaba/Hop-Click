@@ -31,6 +31,7 @@ gem 'omniauth-facebook'
 gem 'gravatar_image_tag'
 # Bootstrap
 gem 'bootstrap-sass'
+gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

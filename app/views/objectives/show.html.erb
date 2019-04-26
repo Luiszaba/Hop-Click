@@ -12,10 +12,15 @@
 </p>
 
 <p>
+  <strong>Assigned to:</strong>
+  <%= @objective.user.name %>
+</p>
+
+<p>
   <strong>Completed:</strong>
   <%= @objective.completed %>
 </p>
 
-<%= link_to 'Edit', edit_objective_path(@objective) %> |
+<%= link_to 'Edit', edit_objective_path(@objective) %>
 <%= link_to 'Back', objectives_path %>
 <%= link_to 'New', new_objective_path %>

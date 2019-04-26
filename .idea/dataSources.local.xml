@@ -4,6 +4,7 @@
     <data-source name="development" uuid="324299a1-c5f8-414b-9a03-cf449fef0128">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
       <auth-required>false</auth-required>
+      <introspection-schemas>*:</introspection-schemas>
     </data-source>
     <data-source name="postgres@localhost" uuid="fdb85548-2097-47b1-87ae-cc4f0e472e5c">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />

@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
 
+<p id="notice"><%= notice %></p>
+<br>
 <p>
   <strong>New Group Name: </strong>
   <%= @group.name %><br/>
+  <strong>Belongs To:</strong>
   <% @group.users.each do |user| %>
-  <%= user.name %>
+    <%= user.name %>
   <% end %>
-
 </p>
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
+<br>
+<%= link_to 'Edit', edit_group_path(@group) %>
 <%= link_to 'Back', groups_path %>
 <%= link_to 'New', new_group_path %>
