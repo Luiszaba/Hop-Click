@@ -1,24 +1,13 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Rails Project App
+Hop Click
 
 * Ruby version
+2.6.3
+* Rails version 
+5.2.3
 
-* System dependencies
+Basic office and life management application.  
+Schema must be dropped and reloaded before use.
+Schema seeds can be adjusted, removed or replaced to best suit your needs.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Created with Devise and OmniAuth for Facebook
