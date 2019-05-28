@@ -10,7 +10,12 @@ class ObjectivesController < ApplicationController
     @objectives = Objective.all.order('created_at DESC')
   end
 
-  def show; end
+    # show serialization
+  def show
+    @objective = Objective.find(params[:id])
+    render json: @objective.to_json(only: [:id, :name, :description, :due_date], 
+      include: [user: { only: [:id, :name, :email] }] )
+  end
 
   def edit; end
 
@@ -49,7 +54,7 @@ class ObjectivesController < ApplicationController
 
   def completed
     @objective.update(completed: true)
-    self.destory
+    @objective.delete
     redirect_to objectives_path
   end
 
@@ -72,7 +77,3 @@ class ObjectivesController < ApplicationController
     :due_date, :user_id)
   end
 end
-
-
-
-
