@@ -1,6 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<style>
+table, th, td {
+    border: 1px solid black;
+    width: auto;
+    height: 30px;
+    text-align: center;
+    padding: 10px
+}
+</style>
+
 <h1>Objectives</h1>
+
 
 <table>
   <thead>
@@ -13,6 +24,7 @@
     </tr>
   </thead>
 
+ 
   <tbody>
     <% @objectives.each do |objective| %>
     <tr>
@@ -28,9 +40,11 @@
       <% end %>
     </tr>
     <% end %>
+  
   </tbody>
+  
 </table>
-
+ 
 <br>
 
-<%= link_to 'New Objective', new_objective_path %>
+<strong><%= link_to 'New Objective', new_objective_path %></strong>

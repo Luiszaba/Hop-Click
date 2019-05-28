@@ -13,7 +13,7 @@ class ObjectivesController < ApplicationController
     # show serialization
   def show
     @objective = Objective.find(params[:id])
-    render json: @objective.to_json(only: [:id, :name, :description, :due_date], 
+    render json: @objective.to_json(only: [:id, :name, :description, :due_date, :completed], 
       include: [user: { only: [:id, :name, :email] }] )
   end
 
