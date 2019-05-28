@@ -4,17 +4,17 @@
 
 <table>
   <thead>
-  <tr>
-    <th>Assigned to</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Due Date</th>
-    <th>Completed</th>
-  </tr>
+    <tr>
+      <th>Assigned to</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Completed</th>
+    </tr>
   </thead>
 
   <tbody>
-  <% @objectives.each do |objective| %>
+    <% @objectives.each do |objective| %>
     <tr>
       <td><%= objective.user.name %></td>
       <td><%= objective.name %></td>
@@ -23,11 +23,11 @@
       <td><%= objective.completed %></td>
       <td><%= link_to 'Show', objective %></td>
       <% if current_user %>
-        <td><%= link_to 'Edit', edit_objective_path(objective) %></td>
-        <td><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to 'Edit', edit_objective_path(objective) %></td>
+      <td><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       <% end %>
     </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
 
