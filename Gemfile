@@ -27,6 +27,9 @@ gem 'pry'
 gem 'devise'
 gem 'omniauth-facebook'
 
+# serializer
+gem 'active_model_serializers'
+
 # User Image Icon
 gem 'gravatar_image_tag'
 # Bootstrap

@@ -49,6 +49,7 @@ class ObjectivesController < ApplicationController
 
   def completed
     @objective.update(completed: true)
+    self.destory
     redirect_to objectives_path
   end
 
@@ -68,7 +69,7 @@ class ObjectivesController < ApplicationController
 
   def objective_params
     params.require(:objective).permit(:name, :description, :group_id, :completed,
-                                      :due_date, :user_id)
+    :due_date, :user_id)
   end
 end
 
