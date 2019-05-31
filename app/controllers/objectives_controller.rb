@@ -10,11 +10,15 @@ class ObjectivesController < ApplicationController
     @objectives = Objective.all.order('created_at DESC')
   end
 
+    # objective_data
+  def objective_data
+    objective = Objective.find(params[:id])
+    render json: ObjectiveSerializer.serialize(objective)
+  end
+
     # show serialization
   def show
     @objective = Objective.find(params[:id])
-    render json: @objective.to_json(only: [:id, :name, :description, :due_date, :completed], 
-      include: [user: { only: [:id, :name, :email] }] )
   end
 
   def edit; end

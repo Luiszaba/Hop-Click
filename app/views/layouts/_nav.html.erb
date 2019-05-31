@@ -1,15 +1,30 @@
-<nav>
-<h1> Hop-Click</h1>
-  <ul>
+<style>
+h1, ol {
+    width: auto;
+    height: 50px;
+    text-align: left;
+}
+</style>
+<nav class="navbar">
+<div id="title" class="nav-title">
+<h1>Hop-Click</h1>
+  <div id="account">
     <% if !current_user %>
-      <li><%= link_to "Sign in", new_user_session_path %></li>
-      <li><%= link_to "Create Account", new_user_registration_path %></li>
+    <ol>
+      <button>><%= link_to "Sign in", new_user_session_path %></button>
+      <button><%= link_to "Create Account", new_user_registration_path %></button>
+    </ol>
     <% else %>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Groups", groups_path %></li>
-      <li><%= link_to "Objectives", objectives_path %></li>
-      <li><%= link_to "Manage Account", edit_user_registration_path %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <section id="loggedSection">
+    <ol id="logged">
+      <button><%= link_to "Home", root_path %></button>
+      <button><%= link_to "Groups", groups_path %></button>
+      <button><%= link_to "Objectives", objectives_path %></button>
+      <button><%= link_to "Manage Account", edit_user_registration_path %></button>
+      <button><%= link_to "Logout", destroy_user_session_path, method: :delete %></button>
+      </ol>
     <% end %>
+    </section>
   </ul>
+  </div>
 </nav>

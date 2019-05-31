@@ -2,3 +2,16 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+    background-color: antiquewhite
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    width: auto;
+    height: 30px;
+    text-align: center;
+    padding: 10px
+}
