@@ -7,40 +7,41 @@ class newObjective {
         this.completed = completed
         this.user_id = user_id
         this.group_id = group_id
+
         this.render()
         //Object constructer for objective using all objective attributes
     }
-        //render the object
+
+
+    //render the object
     render() {
         // const container for the object assigned to the element id objectiveList
         const objectiveContainer = document.getElementById('objectiveList')
         //create container and card for objectives
         const objectiveCard = document.createElement('div')
         // const for checkbox
-        const completed = this.completed ? 'completed' :''
+        const completed = this.completed ? 'completed' : ''
         // append objective-card to the div
         objectiveCard.classList.add('objective-card')
         // correct id necessary for function
         objectiveCard.id = this.id
         // form from _form in objective views
         objectiveCard.innerHTML =
-        // form for create new objective
-    `<form class="new_objective form">
+
+            // form for create new objective
+            `<form class="new_objective form">
         <div class="objForm">
             <h2><strong>Name:</strong>${this.name}</h2>
             <p>Description: ${this.description}</p>
             <p>Due: ${this.due_date}</p>
             <p>Assigned to: ${this.user_id}</p>
             <p>Group Assignment: ${this.group_id}<p>
-            <p>Completed?:<input type="checkbox" ${this.completed}/><p>
+            <p>Completed?:<input class="complete?" type="checkbox" ${completed}/><p>
         </div>
         </form>`
 
         objectiveContainer.appendChild(objectiveCard)
         // append the newly created information to the objectiveContainer
-        objectiveCard.addEventListener('click', e => {
-        //callback method for event listener
-
-        })
+        debugger
     }
 }

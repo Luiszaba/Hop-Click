@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :objectives
 
+  
   get 'objectives/:id/objective_data', to: 'objectives#objective_data'
 
   root "home#index"

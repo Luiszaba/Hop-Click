@@ -1,6 +1,6 @@
 class ObjectiveSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :due_date, :completed
-  belongs_to :user
+  belongs_to :user, :class_name => User, :foreign_key => "user_id"
 
   def self.serialize(objective)
     serialized_objective = '{'

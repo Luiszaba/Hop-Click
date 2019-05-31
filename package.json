@@ -1,5 +1,6 @@
 {
-  "name": "LifeClick",
+  "name": "hop-click",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "vue-resource": "^1.5.1",
