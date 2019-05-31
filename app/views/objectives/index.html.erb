@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <style>
@@ -5,7 +6,7 @@
   th,
   td {
     border: 1px solid black;
-    background-color: tan;
+    background-color: #D1EEE1;
     width: auto;
     height: 30px;
     text-align: center;
@@ -45,5 +46,15 @@
       <% end %>
     </tbody>
   </table>
+  <h1>Use the form below to quickly add a new objective</h1>
+  <div id="objectiveList">
+    <div id="form">
+      <input type="text" name="name" placeholder="name"/>
+      <input type="text" name="description" placeholder="description"/>
+      <input type="text" name="due_date" placeholder="due date"/>
+      <input type="text" name="user_id" placeholder="user"/>
+      <input type="checkbox" name="completed?" value=''>
+      <input type="submit" value="Submit">
+    </div>
   <br>
-  <strong><%= link_to 'New Objective', new_objective_path %></strong>
+  <!--<strong><%= link_to 'New Objective', new_objective_path %></strong>--> [Hidden path]

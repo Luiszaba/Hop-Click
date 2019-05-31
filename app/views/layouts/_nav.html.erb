@@ -11,7 +11,7 @@ h1, ol {
   <div id="account">
     <% if !current_user %>
     <ol>
-      <button>><%= link_to "Sign in", new_user_session_path %></button>
+      <button><%= link_to "Sign in", new_user_session_path %></button>
       <button><%= link_to "Create Account", new_user_registration_path %></button>
     </ol>
     <% else %>
