@@ -8,20 +8,21 @@ class newObjective {
         this.user_id = user_id
         this.group_id = group_id
         this.render()
-
+        //Object constructer for objective using all objective attributes
     }
-
+        //render the object
     render() {
+        // const container for the object assigned to the element id objectiveList
         const objectiveContainer = document.getElementById('objectiveList')
         //create container and card for objectives
         const objectiveCard = document.createElement('div')
+        // append objective-card to the div
+        objectiveCard.classList.add('objective-card')
+        // correct id necessary for function
         objectiveCard.id = this.id
+        // form from _form in objective views
         objectiveCard.innerHTML =
     `<form class="new_objective form">
-        <div class="field">
-            <%= form.label :group %>
-            <%= form.collection_select :group_id, Group.all, :id, :name %>
-        </div>
         <div class="field">
             <%= form.label :name %>
             <%= form.text_field :name %>
@@ -38,6 +39,10 @@ class newObjective {
             <%= form.label :due_date %>
             <%= form.date_select :due_date %>
         </div>
+        <div class = "group field" >
+            <%= form.label: group % >
+            <%= form.collection_select: group_id, Group.all,: id,: name % >
+            </div>
         <div class="field">
             <%= form.label :completed %>
             <%= form.check_box :completed %>
@@ -47,7 +52,8 @@ class newObjective {
         </div>`
 
         objectiveContainer.appendChild(objectiveCard)
+        // append the newly created information to the objectiveContainer
         objectiveCard.addEventListener('click', e=> {
-
+        //callback method for event listener
         })
-    }
+    }}
