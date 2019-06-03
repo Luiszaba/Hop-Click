@@ -2,6 +2,7 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
 
@@ -30,30 +31,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector('#objForm').addEventListener('submit', addObj)
 
     function addObj(event) {
-        event.preventDefault()
+        //event.preventDefault()
+
         const data = {
             'name': event.target.name.value,
             'description': event.target.description.value,
             'due_date': event.target.due_date.value,
             'user_id': event.target.user.name.value,
-            'completed': event.target.completed.checked
-            
+            'completed': event.target.completed.value
         }
-        
-        // incredibly difficult time solving 422 (Unprocessable Entity)
-        // attempted to use fetch('http://localhost:3000/objectives.json', { (with and without .json appended to the url)
-        // I also attempted to create  const url = this.action + '.json'  also without '.json' appended to the action
-        fetch('http://localhost:3000/objectives', {
+
+        fetch('http://localhost:3000/objectives.json', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            // line below causing uncaught promise
-            //.then(res => res.json())
-            .then(obj => {
 
+            .then(res => res.json())
+            .then(obj => {
+                console.log(obj)
                 const {
                     id,
                     name,
@@ -64,8 +62,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     completed
                 } = obj
 
+                // objective object continues to return undefined.  
                 new Objective(id, name, description, user_id, due_date, group_id, completed)
-                document.getElementById("#objForm").addEventListener(click,'submit').reset()
+
+                // reset is not a function, although objForm is a form?
+                // document.getElementById('objForm').value = ""
             })
     }
-});
+})

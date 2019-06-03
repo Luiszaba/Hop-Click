@@ -17,3 +17,16 @@
               })
             })
           </script>
+
+
+Code for new objective.js to delete
+              deleteObj(event) {
+        const id = event.target.dataset.id
+        fetch(`http://localhost:3000/objectives/${id}`, {
+            method : 'DELETE'
+        })
+        .then(() => {
+             document.getElementById('objectiveList')
+             .removeChild(document.getElementById(id))
+        })
+    }

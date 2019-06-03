@@ -9,6 +9,7 @@ class ObjectivesController < ApplicationController
 
   def index
     @objectives = Objective.all.order('created_at DESC')
+    @objective = Objective.new
     respond_to do |format|
       format.html {
         render :index
@@ -43,9 +44,9 @@ class ObjectivesController < ApplicationController
       @objective = Objective.new(objective_params)
       respond_to do |format|
         if @objective.save
-          format.js
-          format.html {redirect_to @objective, notice: 'Objective was successfully created.'}
-          format.json {render :show, status: :created, location: @objective}
+          # comment out format.htmlto resolve 422 error
+          #format.html {redirect_to @objective, notice: 'Objective was successfully created.'}
+          format.json {render json: @objective}
         else
           format.html {render :new}
           format.json {render json: @objective.errors, status: :unprocessable_entity}

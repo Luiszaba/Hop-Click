@@ -1,25 +1,26 @@
 <style>
-div {
-  font-size: 20px;
-  text-align: left; 
-}
+  div {
+    font-size: 20px;
+    text-align: left;
+  }
 </style>
 
 <%= form_with(model: objective) do |form| %>
 
-  <% if objective.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(objective.errors.count, "error") %> prohibited this
-        objective from being saved:</h2>
+<% if objective.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(objective.errors.count, "error") %> prohibited this
+    objective from being saved:</h2>
 
-      <ul>
-        <% objective.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<form class="new_objective_form">
+  <ul>
+    <% objective.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<form id='form' class="new_objective_form">
   <div class="name field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -29,7 +30,7 @@ div {
     <%= form.text_area :description %>
   </div>
   <div class="user field">
-    <%= form.label :user_id, "Assign task to a user" %>
+    <%= form.label :user_id %>
     <%= form.collection_select :user_id, User.all, :id, :name %>
   </div>
   <div class="date field">
@@ -37,7 +38,7 @@ div {
     <%= form.date_select :due_date %>
   </div>
   <div class="group field">
-    <%= form.label :group, "Group" %>
+    <%= form.label :group %>
     <%= form.collection_select :group_id, Group.all, :id, :name %>
   </div>
   <div class="completed field">
@@ -46,36 +47,40 @@ div {
   </div>
   <div class="actions">
     <%= form.submit %>
-  </div>  
-<% end %>
-<div id="postResult">
-<h1 id="postName"></h1>
-<p id="postDescription">
-<p id="postUser"></p>
-<p id="postDate"></p>
-<p id="postGroup"></p>
-<p id="postComplete"></p>
-</div>
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
-      let values = $(this).serialize();
-      let posting = $.post('/objectives', values);
-      posting.done(function(data){
-        let objective = data;
-        // unable to define objective["name"]
-        $("#postName").text(objective["name"])
-        $("#postDescription").text(objective["objective"])
-        $("#postUser").text(objective["user_id"])
-        $("#postDate").text(objective["due_date"])
-        $("#postGroup").text(obective["group_id"])
-        $("#postComplete").check_box(objective["completed"])
-        console.log(data)
-      })
-      alert("default action paused");
+  </div>
+  <% end %>
+
+  <div id="postResult">
+    <td id="postName"></td>
+    <td id="postDescription"></td>
+    <td id="postUser"></td>
+    <td id="postDate"></td>
+    <td id="postGroup"></td>
+    <td id="postComplete"></td>
+  </div>
+
+  <script type="text/javascript" charset="utf-8">
+    $(function () {
+      $('form').submit(function (event) {
+        event.preventDefault();
+        const checked = this.completed == true ? 'completed' : ''
+        let values = $(this).serialize();
+        let posting = $.post('/objectives.json', values);
+        posting.done(function (data) {
+          
+          let objective = data;
+
+          $("#postName").text(objective["name"])
+          $("#postDescription").text(objective["description"])
+          $("#postUser").text(objective["user_id"])
+          $("#postDate").date_select(objective["due_date"])
+          $("#postGroup").text(objective["group_id"])
+          $("#postComplete").text(objective["checked"])
+
+          console.log(data)
+          $('#form').trigger("reset");
+        });
+      });
     });
-  });
-</script>
+  </script>
 </form>
