@@ -1,63 +1,72 @@
 <html>
-<p id="notice"><%= notice %></p>
-<style>
-  table,
-  th,
-  td {
-    border: 1px solid black;
-    background-color: #D1EEE1;
-    width: auto;
-    height: 30px;
-    text-align: center;
-    padding: 10px
-  }
-</style>
-<body>
-<div id="list" class="objectiveList">
-  <h1>Objectives</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Assigned to</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Due Date</th>
-        <th>Completed</th>
-        <th>Reveal</th>
-        <th>Make Changes</th>
-        <th>Clear</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @objectives.each do |objective| %>
-      <tr>
-        <td><%= objective.user.name %></td>
-        <td><%= objective.name %></td>
-        <td><%= objective.description %></td>
-        <td><%= objective.due_date.strftime("%B %d, %Y") %></td>
-        <td><%= objective.completed %></td>
-        <td><button><%= link_to 'Show', objective %></button></td>
-        <% if current_user %>
-        <td><button><%= link_to 'Edit', edit_objective_path(objective) %></button></td>
-        <td><button><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></button></td>
-        <% end %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <h1>Use the form below to quickly add a new objective</h1>
-  <br>
-  <div id="objectiveList">
-    <div id="obj-form">
-      <label>Name: </label><input type="text" name="name" placeholder="Name"/>
-      <label>Description: </label><input type="text" name="description" placeholder="Description"/>
-      <label>Due Date: </label><input type="text" name="due_date" placeholder="Due date"/>
-      <label>Complete?</label> <input type="checkbox" name="completed?" value=""/>
-      <input type="submit" value="Submit">
-    </div>
-  <br>
-  <script type="text/javascript" src="javascripts/new_objective.js"></script>
-  <script type="text/javascript" src="javascript/objectives.js"></script>
-  </body>
-  </html>
-  <!--<strong><%= link_to 'New Objective', new_objective_path %></strong>--> [Hidden path]
+  <p id="notice"><%= notice %></p>
+
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      background-color: #D1EEE1;
+      width: auto;
+      height: 30px;
+      text-align: center;
+      padding: 10px,
+    }
+  </style>
+
+  <body>
+    <div id="list" class="objectiveList">
+      <h1>Objectives</h1>
+      <table id="obj table">
+        <thead>
+          <tr>
+            <th>Assigned to</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Completed</th>
+            <th>Reveal</th>
+            <th>Make Changes</th>
+            <th>Clear</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @objectives.each do |objective| %>
+          <tr>
+          <!-- move into its own partial? render @objective? -->
+            <td><%= objective.user.name %></td>
+            <td><%= objective.name %></td>
+            <td><%= objective.description %></td>
+            <td><%= objective.due_date.strftime("%B %d, %Y") %></td>
+            <td><%= objective.completed %></td>
+            <td><button><%= link_to 'Show', objective %></button></td>
+            <% if current_user %>
+            <td><button><%= link_to 'Edit', edit_objective_path(objective) %></button></td>
+            <td><button><%= link_to 'Destroy', objective, method: :delete, data: {confirm: 'Are you sure?'} %></button>
+            </td>
+            <% end %>
+          </tr>
+          <% end %>
+          
+        </tbody>
+      </table>
+      <h1>Use the form below to quickly add a new objective</h1>
+      <br>
+      <div id="objectiveList">
+        <div id="form">
+          <div id="objForm">
+          <form>
+          <!-- move into its own partial? render @objective? -->
+            <label>Name: </label><input type="text" name="name" placeholder="Name" /><br>
+            <label>Description: </label><input type="text" name="description" placeholder="Description" /><br>
+            <label>Due Date: </label><input type="text" name="due_date"> <br>
+            <label>Complete?</label> <input type="checkbox" name="completed"/><br>
+            <input type="submit" value="Create">
+            </form>
+          </div>
+          <br>
+  <div id="new_obj_link">
+  <strong><%= link_to 'New Objective', new_objective_path %></strong>
+  </div>
+</body>
+</html>

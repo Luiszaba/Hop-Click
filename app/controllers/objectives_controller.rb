@@ -8,6 +8,14 @@ class ObjectivesController < ApplicationController
 
   def index
     @objectives = Objective.all.order('created_at DESC')
+    respond_to do |format|
+      format.html {
+        render :index
+      }
+      format.json {
+        render json: @objectives
+      }
+    end
   end
 
     # objective_data
@@ -34,6 +42,7 @@ class ObjectivesController < ApplicationController
       @objective = Objective.new(objective_params)
       respond_to do |format|
         if @objective.save
+          format.js
           format.html {redirect_to @objective, notice: 'Objective was successfully created.'}
           format.json {render :show, status: :created, location: @objective}
         else
