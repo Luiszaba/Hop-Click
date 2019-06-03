@@ -1,3 +1,10 @@
+<style>
+div {
+  font-size: 20px;
+  text-align: left; 
+}
+</style>
+
 <%= form_with(model: objective) do |form| %>
 
   <% if objective.errors.any? %>
@@ -12,7 +19,6 @@
       </ul>
     </div>
   <% end %>
-  
 <form class="new_objective_form">
   <div class="name field">
     <%= form.label :name %>
@@ -42,4 +48,34 @@
     <%= form.submit %>
   </div>  
 <% end %>
+<div id="postResult">
+<h1 id="postName"></h1>
+<p id="postDescription">
+<p id="postUser"></p>
+<p id="postDate"></p>
+<p id="postGroup"></p>
+<p id="postComplete"></p>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      let values = $(this).serialize();
+      let posting = $.post('/objectives', values);
+      posting.done(function(data){
+        let objective = data;
+        // unable to define objective["name"]
+        $("#postName").text(objective["name"])
+        $("#postDescription").text(objective["objective"])
+        $("#postUser").text(objective["user_id"])
+        $("#postDate").text(objective["due_date"])
+        $("#postGroup").text(obective["group_id"])
+        $("#postComplete").check_box(objective["completed"])
+        console.log(data)
+      })
+      alert("default action paused");
+    });
+  });
+</script>
 </form>

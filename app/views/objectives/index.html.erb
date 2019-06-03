@@ -12,6 +12,9 @@
       text-align: center;
       padding: 10px,
     }
+    strong {
+      font-size: 20px
+    }
   </style>
 
   <body>
@@ -50,25 +53,28 @@
 
         </tbody>
       </table>
-
+      <br>
+<div id="new_obj_link">
+            <strong><%= link_to 'New Objective', new_objective_path %></strong>
+          </div>
       <br>
       <div id="objectiveList">
         <div id="form">
-          <h1>Use the form below to quickly add a new objective</h1>
+          <h1>Use the form below to quickly add a new objective</h1><br>
           <div name="form" id="objForm">
             <form>
               <!-- move into its own partial? render @objective? -->
-              <label>Name: </label><input type="text" name="name" placeholder="Name" /><br>
+              <label>Name: </label><input type="text" name="name" placeholder="Name"/><br>
               <label>Description: </label><input type="text" name="description" placeholder="Description" /><br>
-              <label>Due Date: </label><input type="text" name="due_date"> <br>
+              <label>Due Date: </label><input type="text" name="due_date" placeholder="due date" /><br>
+              <label>User:</label><input type="text" name="user" placeholder="user"/><br>
               <label>Complete?</label> <input type="checkbox" name="completed" /><br>
+              <label>
               <input type="submit" value="Create">
             </form>
           </div>
           <br>
-          <div id="new_obj_link">
-            <strong><%= link_to 'New Objective', new_objective_path %></strong>
-          </div>
+          
   </body>
 
 </html>
