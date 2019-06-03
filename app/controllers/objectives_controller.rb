@@ -4,6 +4,7 @@ require 'pry'
 
 # controller for Objectives
 class ObjectivesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_objective, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -21,7 +22,7 @@ class ObjectivesController < ApplicationController
     # objective_data
   def objective_data
     objective = Objective.find(params[:id])
-    render json: ObjectiveSerializer.serialize(objective)
+    render json: objective.to_json(include: :user)
   end
 
     # show serialization

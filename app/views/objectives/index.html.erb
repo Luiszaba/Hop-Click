@@ -33,7 +33,7 @@
         <tbody>
           <% @objectives.each do |objective| %>
           <tr>
-          <!-- move into its own partial? render @objective? -->
+            <!-- move into its own partial? render @objective? -->
             <td><%= objective.user.name %></td>
             <td><%= objective.name %></td>
             <td><%= objective.description %></td>
@@ -47,26 +47,28 @@
             <% end %>
           </tr>
           <% end %>
-          
+
         </tbody>
       </table>
-      <h1>Use the form below to quickly add a new objective</h1>
+
       <br>
       <div id="objectiveList">
         <div id="form">
-          <div id="objForm">
-          <form>
-          <!-- move into its own partial? render @objective? -->
-            <label>Name: </label><input type="text" name="name" placeholder="Name" /><br>
-            <label>Description: </label><input type="text" name="description" placeholder="Description" /><br>
-            <label>Due Date: </label><input type="text" name="due_date"> <br>
-            <label>Complete?</label> <input type="checkbox" name="completed"/><br>
-            <input type="submit" value="Create">
+          <h1>Use the form below to quickly add a new objective</h1>
+          <div name="form" id="objForm">
+            <form>
+              <!-- move into its own partial? render @objective? -->
+              <label>Name: </label><input type="text" name="name" placeholder="Name" /><br>
+              <label>Description: </label><input type="text" name="description" placeholder="Description" /><br>
+              <label>Due Date: </label><input type="text" name="due_date"> <br>
+              <label>Complete?</label> <input type="checkbox" name="completed" /><br>
+              <input type="submit" value="Create">
             </form>
           </div>
           <br>
-  <div id="new_obj_link">
-  <strong><%= link_to 'New Objective', new_objective_path %></strong>
-  </div>
-</body>
+          <div id="new_obj_link">
+            <strong><%= link_to 'New Objective', new_objective_path %></strong>
+          </div>
+  </body>
+
 </html>

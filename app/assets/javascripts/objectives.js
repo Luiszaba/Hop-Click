@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function addObj(event) {
         event.preventDefault()
-        const newOb = {
+        const data = {
             'name': event.target.name.value,
             'description': event.target.description.value,
             'due_date': event.target.due_date.value,
@@ -41,15 +41,15 @@ debugger
         // incredibly difficult time solving 422 (Unprocessable Entity)
         // attempted to use fetch('http://localhost:3000/objectives.json', { (with and without .json appended to the url)
         // I also attempted to create  const url = this.action + '.json'  also without '.json' appended to the action
-        fetch('http://localhost:3000/objectives.json', {           
+        fetch('http://localhost:3000/objectives', {           
                 method: 'POST',
-                body: JSON.stringify(newOb),
+                body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-
-            .then(res => res.json(newOb))
+            // line below causing uncaught promise
+            //.then(res => res.json())
             .then(obj => {
 
                 const {
@@ -63,7 +63,7 @@ debugger
                 } = obj
 
                 new Objective(id, name, description, user_id, due_date, group_id, completed)
-                
+                document.getElementsByName('form').clear
             })
     }
 });

@@ -14,7 +14,7 @@ class Objective {
     render() {
         const objectiveContainer = document.getElementById('objectiveList')
         const objectiveCard = document.createElement('div')
-        const toggled = this.completed == true ? 'completed' : ''
+        const checked = this.completed == true ? 'completed' : ''
         objectiveCard.classList.add('objective-card')
         objectiveCard.id = this.id
         objectiveCard.innerHTML =
@@ -26,7 +26,7 @@ class Objective {
             <p>Due: ${this.due_date}</p>
             <p>Assigned to: ${this.user_id}</p>
             <p>Group Assignment: ${this.group_id}<p>
-            <p>Complete?:<input class="toggle" name="completed" type="checkbox" ${toggled}/><p>
+            <p>Complete?:<input class="toggle" name="completed" type="checkbox" ${checked}/><p>
         </div>
         </form>`
 
