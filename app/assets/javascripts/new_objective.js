@@ -9,7 +9,6 @@ class Objective {
         this.user_id = user_id
         this.group_id = group_id
         this.render()
-
     }
 
     render() {
@@ -31,7 +30,7 @@ class Objective {
             <button class="update" data-id="${this.id}>Update</button>
         </div>
         </form>`
-
+        
         objectiveContainer.appendChild(objectiveCard)
         }
 }

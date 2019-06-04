@@ -6,15 +6,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
 
-    class Objective {
-        constructor(id, name, description, due_date, completed, user_id, group_id) {
-                this.id = id
-                this.name = name
-                this.description = description
-                this.due_date = due_date
-                this.completed = completed
-                this.user_id = user_id
-                this.group_id = group_id
 
     fetch('http://localhost:3000/objectives.json')
         .then(res => {
@@ -36,8 +27,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 new Objective(id, name, description, user_id, due_date, group_id, completed)
             })
         })
-
-    // query select 'form' and add event listener to submit
     document.querySelector('#objForm').addEventListener('submit', addObj)
 
     function addObj(event) {
@@ -76,7 +65,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 new Objective(id, name, description, user_id, due_date, group_id, completed)
 
                 // reset is not a function, although objForm is a form?
-                // document.getElementById('objForm').value = ""
+                document.getElementById('form').reset()
             })
     }}
-}})
+)
