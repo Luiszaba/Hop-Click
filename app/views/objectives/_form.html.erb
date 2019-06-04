@@ -1,6 +1,7 @@
 <style>
   div {
     font-size: 20px;
+    padding: 5px,
     text-align: left;
   }
 </style>
@@ -28,7 +29,7 @@
   <div class="description field">
     <%= form.label :description %>
     <%= form.text_area :description %>
-  </div>
+  </div><br>
   <div class="user field">
     <%= form.label :user_id %>
     <%= form.collection_select :user_id, User.all, :id, :name %>
@@ -47,6 +48,7 @@
   </div>
   <div class="actions">
     <%= form.submit %>
+    
   </div>
   <% end %>
 
@@ -67,18 +69,18 @@
         let values = $(this).serialize();
         let posting = $.post('/objectives.json', values);
         posting.done(function (data) {
-          
+          debugger
           let objective = data;
 
           $("#postName").text(objective["name"])
           $("#postDescription").text(objective["description"])
           $("#postUser").text(objective["user_id"])
-          $("#postDate").date_select(objective["due_date"])
+          $("#postDate").date(objective["due_date"])
           $("#postGroup").text(objective["group_id"])
-          $("#postComplete").text(objective["checked"])
-
+          $("#postComplete").checked(objective["checked"])
+          
           console.log(data)
-          $('#form').trigger("reset");
+          
         });
       });
     });
