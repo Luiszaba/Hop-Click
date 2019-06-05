@@ -5,7 +5,16 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
-
+class Objective {
+    constructor(id, name, description, due_date, completed, user_id, group_id) {
+            this.id = id
+            this.name = name
+            this.description = description
+            this.due_date = due_date
+            this.completed = completed
+            this.user_id = user_id
+            this.group_id = group_id
+            this.render()
 
     fetch('http://localhost:3000/objectives.json')
         .then(res => {
@@ -27,9 +36,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 new Objective(id, name, description, user_id, due_date, group_id, completed)
             })
         })
-    document.querySelector('#objForm').addEventListener('submit', addObj)
+    //document.querySelector('#objForm').addEventListener('submit', addObj)
 
-    function addObj(event) {
+    /* function addObj(event) {
         event.preventDefault()
 
         const data = {
@@ -38,7 +47,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             'due_date': event.target.due_date.value,
             'user_id': event.target.user.name.value,
             'completed': event.target.completed.value
-        }
+        } */
 
         fetch('http://localhost:3000/objectives.json', {
                 method: 'POST',
@@ -68,4 +77,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById('form').reset()
             })
     }}
-)
+})

@@ -2,26 +2,13 @@
   div {
     font-size: 20px;
     padding: 5px,
-    text-align: left;
+      text-align: left;
   }
 </style>
 
-<%= form_with(model: objective) do |form| %>
 
-<% if objective.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(objective.errors.count, "error") %> prohibited this
-    objective from being saved:</h2>
-
-  <ul>
-    <% objective.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-<form id='form' class="new_objective_form">
+<div id="form">
+<%= form_for(@objective) do |form| %>
   <div class="name field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -48,7 +35,6 @@
   </div>
   <div class="actions">
     <%= form.submit %>
-    
   </div>
   <% end %>
 
@@ -78,11 +64,12 @@
           $("#postDate").date(objective["due_date"])
           $("#postGroup").text(objective["group_id"])
           $("#postComplete").checked(objective["checked"])
-          
+
           console.log(data)
-          
+
         });
       });
     });
   </script>
-</form>
+  </form>
+</div>

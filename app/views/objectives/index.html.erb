@@ -23,7 +23,6 @@
   <body>
   <br>
     <div id="objectiveList">
-      <div id="list" class="objectiveList">
         <h1>Objectives</h1>
         <table id="obj table">
           <thead>
@@ -56,13 +55,11 @@
               <% end %>
             </tr>
             <% end %>
-
           </tbody>
         </table>
 
-        <div id="form">
+        
           <h1>Use the form below to quickly add a new objective</h1><br>
-          <div name="form" id="objForm">
             <%= render 'form', objective: @objective %>
           </div>
           <!--<strong><%= link_to 'New Objective', new_objective_path %></strong>-->
