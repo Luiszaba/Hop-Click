@@ -33,8 +33,9 @@
     <%= form.label :completed %>
     <%= form.check_box :completed %>
   </div>
-  <div class="actions">
+  <div id="post" class="actions">
     <%= form.submit %>
+    
   </div>
   <% end %>
 
@@ -55,18 +56,15 @@
         let values = $(this).serialize();
         let posting = $.post('/objectives.json', values);
         posting.done(function (data) {
-          debugger
           let objective = data;
 
           $("#postName").text(objective["name"])
           $("#postDescription").text(objective["description"])
-          $("#postUser").text(objective["user_id"])
-          $("#postDate").date(objective["due_date"])
+          $("#postUser").text(objective["user"]["name"])
+          $("#postDate").html(objective["due_date"])
           $("#postGroup").text(objective["group_id"])
-          $("#postComplete").checked(objective["checked"])
-
-          console.log(data)
-
+          $("#postComplete").text(objective["completed"])
+          $("form").reset()
         });
       });
     });

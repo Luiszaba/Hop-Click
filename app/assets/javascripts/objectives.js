@@ -5,8 +5,9 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
-class Objective {
-    constructor(id, name, description, due_date, completed, user_id, group_id) {
+
+    class Objective {
+        constructor(id, name, description, due_date, completed, user_id, group_id) {
             this.id = id
             this.name = name
             this.description = description
@@ -14,67 +15,53 @@ class Objective {
             this.completed = completed
             this.user_id = user_id
             this.group_id = group_id
-            this.render()
+        
 
-    fetch('http://localhost:3000/objectives.json')
-        .then(res => {
-            return res.json()
-        })
-        .then(objs => {
+            fetch('http://localhost:3000/objectives.json')
+                .then(res => {
+                    return res.json()
+                })
+                .then(objs => {
 
-            objs.forEach(obj => {
-                const {
-                    id,
-                    name,
-                    description,
-                    user_id,
-                    due_date,
-                    group_id,
-                    completed
-                } = obj
+                    objs.forEach(obj => {
+                        const {
+                            id,
+                            name,
+                            description,
+                            user_id,
+                            due_date,
+                            group_id,
+                            completed
+                        } = obj
 
-                new Objective(id, name, description, user_id, due_date, group_id, completed)
-            })
-        })
-    //document.querySelector('#objForm').addEventListener('submit', addObj)
+                        new Objective(id, name, description, user_id, due_date, group_id, completed)
+                    })
+                })
 
-    /* function addObj(event) {
-        event.preventDefault()
+            fetch('http://localhost:3000/objectives.json', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
 
-        const data = {
-            'name': event.target.name.value,
-            'description': event.target.description.value,
-            'due_date': event.target.due_date.value,
-            'user_id': event.target.user.name.value,
-            'completed': event.target.completed.value
-        } */
+                .then(res => res.json())
+                .then(obj => {
+                    console.log(obj)
+                    const {
+                        id,
+                        name,
+                        description,
+                        user_id,
+                        due_date,
+                        group_id,
+                        completed
+                    } = obj
 
-        fetch('http://localhost:3000/objectives.json', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-
-            .then(res => res.json())
-            .then(obj => {
-                console.log(obj)
-                const {
-                    id,
-                    name,
-                    description,
-                    user_id,
-                    due_date,
-                    group_id,
-                    completed
-                } = obj
-
-                // objective object continues to return undefined.  
-                new Objective(id, name, description, user_id, due_date, group_id, completed)
-
-                // reset is not a function, although objForm is a form?
-                document.getElementById('form').reset()
-            })
-    }}
+                    new Objective(id, name, description, user_id, due_date, group_id, completed)
+                })
+        }
+    }
+    
 })
