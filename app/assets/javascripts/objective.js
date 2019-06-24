@@ -36,11 +36,7 @@ class Objective {
     }
 
     render() {
-        const objContainter = document.getElementById('obj table')
-        const objNew = document.createElement('tbody')
-        objNew.classList.add('obj-slot')
-        objNew.id = this.id
-        objNew.innerHTML += $('tbody').innerHTML += `
+        $('table').find('tbody').append(`
         <tr>
                       <td id="postUser">${this.user_id}</td>
                       <td id="postName">${this.name}</td>
@@ -51,7 +47,7 @@ class Objective {
                       <td><button>edit</button></td>
                       <td><button>delete</button>
                       </td>
-                    </tr>`
-        objContainter.appendChild(objNew)
+                    </tr>`)
+        
         }
     }
