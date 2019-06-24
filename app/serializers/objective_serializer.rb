@@ -4,7 +4,6 @@ class ObjectiveSerializer < ActiveModel::Serializer
 
   def self.serialize(objective)
     serialized_objective = '{'
- 
     serialized_objective += '"id": ' + objective.id.to_s + ', '
     serialized_objective += '"name": "' + objective.name + '", '
     serialized_objective += '"description": "' + objective.description + '", '
@@ -14,7 +13,6 @@ class ObjectiveSerializer < ActiveModel::Serializer
     serialized_objective += '"id": "' + objective.user_id.to_s + '", '
     serialized_objective += '"name": "' + objective.user.name + '",'
     serialized_objective += '"email": "' + objective.user.email.to_s + '"} '
-    # and end with the close brace
     serialized_objective += '}'
   end
 end

@@ -23,16 +23,13 @@
   <body>
   <br>
   
-  # start of objective listing
+  
 
     <div id="objectiveList">
         <h1>Objectives</h1> 
-
-        # start of objective table
-        <table id="obj table">
-          <thead>
         
-          #  table headers
+        <table id="obj table">
+          <thead>    
             <tr>
               <th>Assigned to</th>
               <th>Name</th>
@@ -44,6 +41,7 @@
               <th>Clear</th>
             </tr>
           </thead>
+
           <tbody>
             <% @objectives.each do |objective| %>
             <tr>
@@ -54,6 +52,7 @@
               <td id="postDate"><%= objective.due_date.strftime("%B %d, %Y") %></td>
               <td id="postComplete"><%= objective.completed %></td>
               <td><button><%= link_to 'Show', objective %></button></td>
+              
               <% if current_user %>
               <td><button><%= link_to 'Edit', edit_objective_path(objective) %></button></td>
               <td>
@@ -65,12 +64,12 @@
           </tbody>
         </table>
 
-        # partial form for new objective
+        
           <h1>Use the form below to quickly add a new objective</h1><br>
             <%= render 'form', objective: @objective %>
           </div>
 
-          # link to new objective hidden
+          
           <!--<strong><%= link_to 'New Objective', new_objective_path %></strong>-->
   </body>
 
