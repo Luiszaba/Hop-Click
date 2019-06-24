@@ -30,3 +30,35 @@ Code for new objective.js to delete
              .removeChild(document.getElementById(id))
         })
     }
+
+
+    
+  <div id="postResult">
+    <td id="postName"></td>
+    <td id="postDescription"></td>
+    <td id="postUser"></td>
+    <td id="postDate"></td>
+    <td id="postGroup"></td>
+    <td id="postComplete"></td>
+  </div>
+      <script type="text/javascript" charset="utf-8">
+    $(function () {
+      $('form').submit(function (event) {
+        event.preventDefault();
+        const checked = this.completed == true ? 'completed' : ''
+        let values = $(this).serialize();
+        let posting = $.post('/objectives.json', values);
+        posting.done(function (data) {
+          let objective = data;
+
+          $("#postName").text(objective["name"])
+          $("#postDescription").text(objective["description"])
+          $("#postUser").text(objective["user"]["name"])
+          $("#postDate").html(objective["due_date"])
+          $("#postGroup").text(objective["group_id"])
+          $("#postComplete").text(objective["completed"])
+          $("form").reset()
+        });
+      });
+    });
+  </script>

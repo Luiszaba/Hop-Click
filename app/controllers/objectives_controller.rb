@@ -41,7 +41,6 @@ class ObjectivesController < ApplicationController
       @objective = Objective.new(objective_params)
       respond_to do |format|
         if @objective.save
-          format.js
           # comment out format.html to resolve 422 error
           #format.html {redirect_to @objective, notice: 'Objective was successfully created.'}
           format.json {render json: @objective}

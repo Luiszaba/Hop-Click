@@ -1,0 +1,57 @@
+        window.onload = function(){
+            
+            fetch('http://localhost:3000/objectives.json')
+                .then(res => res.json())
+                .then(objs => {
+                    objs.forEach(obj => {
+                        const {
+                            id,
+                            name,
+                            description,
+                            user_id,
+                            due_date,
+                            group_id,
+                            completed
+                        } = obj
+
+                        new Objective(id, name, description, user_id, due_date, group_id, completed)
+                    })
+                })
+
+            document.querySelector('#form').addEventListener('click', newObjective)
+
+            function newObjective(event) {
+                event.preventDefault()
+                let data = {
+                    'name': event.target.name,
+                    'description': event.target.description,
+                    'user_id': event.target.user_id,
+                    'due_date': event.target.due_date,
+                    'group_id': event.target.group_id,
+                    'completed': event.target.completed
+                }
+
+                fetch('http://localhost:3000/objectives', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(obj => {
+                        const {
+                            id,
+                            name,
+                            description,
+                            user_id,
+                            due_date,
+                            group_id,
+                            completed
+                        } = obj
+
+                        new Objective(id, name, description, user_id, due_date, group_id, completed)
+                        document.getElementById('form').reset()
+                    })
+            }
+        }

@@ -56,15 +56,10 @@
         let values = $(this).serialize();
         let posting = $.post('/objectives.json', values);
         posting.done(function (data) {
-          let objective = data;
-
-          $("#postName").text(objective["name"])
-          $("#postDescription").text(objective["description"])
-          $("#postUser").text(objective["user"]["name"])
-          $("#postDate").html(objective["due_date"])
-          $("#postGroup").text(objective["group_id"])
-          $("#postComplete").text(objective["completed"])
-          $("form").reset()
+          debugger
+          const newObj = new Objective(data.id, data.name, data.description, data.user.name, data.due_date, data.group_id, data.completed) 
+          
+          $("#form").reset()
         });
       });
     });
